@@ -37,8 +37,16 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("Copyright 2020, Caroline Kim");
 
+
         try {
             if(website != null) {
+
+                //converting string into url
+                String s = website;
+                URL url = new URL(s);
+                //URL web_url = url.toURL();
+
+
                 JEditorPane html = new JEditorPane(website);
                 html.setEditable(false);
                 html.addHyperlinkListener(this);
@@ -68,6 +76,7 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
 
                 this.getContentPane().add(panel, BorderLayout.NORTH);
                 this.getContentPane().add(scroller, BorderLayout.CENTER);
+                this.toBack.push(url);
                 this.setSize(669,669);
                 this.setVisible(true);
             }
