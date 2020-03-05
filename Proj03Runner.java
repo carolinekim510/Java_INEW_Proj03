@@ -27,6 +27,8 @@ class Proj03Runner {
 class HtmlHandler extends JFrame implements HyperlinkListener {
 
     JEditorPane html;
+    ArrayList<String> toBack;
+    ArrayList<String> toForward;
 
     public HtmlHandler(String website) {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -74,9 +76,19 @@ class HtmlHandler extends JFrame implements HyperlinkListener {
             try {
                 // When the link is cliked, this will send the back to the frame
                 this.html.setPage(e.getURL());
+                // adding the url to the arraylist
+                this.toBack.add(e.getURL().toString());
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
+        }
+    }
+
+    public void actionPerformed (ActionEvent e) {
+        if (e.getActionCommand().equals("Back")) {
+            this.toForward.add(this.toBack.toString());
+            System.out.println(toBack);
+
         }
     }
 
