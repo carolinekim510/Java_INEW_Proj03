@@ -42,8 +42,8 @@ class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
             if(website != null) {
 
                 //converting string into url
-                String s = website;
-                URL url = new URL(s);
+                //String s = website;
+                URL url = new URL(website);
 
                 JEditorPane html = new JEditorPane(website);
                 html.setEditable(false);
