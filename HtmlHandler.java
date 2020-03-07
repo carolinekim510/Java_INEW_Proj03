@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -6,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
-
 
 public class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
 
@@ -86,14 +86,14 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                 ex.printStackTrace();
             }
 
+            System.out.println("history: " + bkHistory);        //ERASE later
         }
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {
+    public void actionPerformed(ActionEvent e) {    //클릭을 했을때의 엑션들이 먼저 이뤄진후, 화면이 보이도록 해야함.
         try {
             URL url = null;
-
             if (e.getActionCommand().equals("Back")) {
                 addHistory = false;
 
@@ -117,22 +117,23 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                     throw new Exception("Next page does not exist.");
                 }
             } else {
-                url = new URL(address.getText());
 
-                /*
-                if (this.position != (this.bkHistory.size() - 1)) {
-                    for(int i = this.position + 1; i<this.bkHistory.size(); i++) {
-                        this.bkHistory.remove(i);
-                    }
-                } else {
-                    this.position = this.position + 1;
-                }
-                */
-                this.bkHistory.add(url);
+                System.out.println("old: " + position);
+                url = new URL(address.getText());
+                //this.position = this.bkHistory.size() - this.position;
+
+                this.position = this.position + 1;
+                this.bkHistory.add(this.position, url);
+
+                System.out.println("new: " + position);                       //ERASE LATER
+
+
             }
 
             this.html.setPage(new URL(address.getText()));          //bring html for any page
+
             System.out.println("history button: " + bkHistory);     //ERASE later
+
         } catch (Exception i) {
             i.printStackTrace();
         }
