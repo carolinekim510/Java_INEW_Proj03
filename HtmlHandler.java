@@ -125,8 +125,51 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
             } else {
                 this.html.setPage(address.getText());
             }
+            this.html.setPage(url.toString());
         } catch (Exception i) {
             i.printStackTrace();
         }
+
+
     }
+/*if (e.getActionCommand().equals("Back")) {
+            if (this.bkHistory.size() > 1) {
+                this.toForward.push(this.bkHistory.get(this.bkHistory.size() -1));
+                this.bkHistory.remove(this.bkHistory.size() - 1);   //현재 리스트에서 마지막 1개를 지움
+
+                try {
+                    this.html.setPage(this.bkHistory.get(this.bkHistory.size() - 1));   //지워진 리스트중 마지막 인덱스에 있는 페이지로 이동함
+                    System.out.println("this is " + bkHistory);  //리스트안에 남겨진 히스토리 프린
+                    System.out.println("this is " + toForward + "| Count: " + forwardCT);
+                    //System.out.println("Forward" + toForward);
+                } catch (Exception io) {
+                    io.printStackTrace();
+                    // System.out.println("--");
+                }
+            } else {
+                System.out.println("There is no more page to go back.");
+            }
+        } else if (e.getActionCommand().equals("Forward")) {
+            if (!this.toForward.isEmpty()) {
+                try {
+                    this.bkHistory.add(this.toForward.get(this.toForward.size()-1));
+                    this.html.setPage(this.toForward.pop());
+                    forwardCT = forwardCT + 1;
+                    System.out.println("this is " + bkHistory);
+                    System.out.println("this is " + toForward + "| Count: " + forwardCT);  //리스트안에 남겨진 히스토리 프린
+                } catch (Exception io) {
+                    io.printStackTrace();
+                }
+            } else {
+                System.out.println("There is no more page to go forward.");
+            }
+
+        } else {
+            myURL = new String (this.address.getText());
+            System.out.println(myURL);
+
+            this. y = new HtmlHandler(myURL);
+
+        }
+*/
 }
