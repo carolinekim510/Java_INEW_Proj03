@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -87,7 +86,6 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                 ex.printStackTrace();
             }
 
-            System.out.println("history: " + bkHistory);        //ERASE later
         }
     }
 
@@ -119,13 +117,17 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                     throw new Exception("Next page does not exist.");
                 }
             } else {
-                //this.html.setPage(address.getText());
                 url = new URL(address.getText());
-                System.out.println(url);
-                this.position = this.bkHistory.size();
-                //this.bkHistory.size() =
-                System.out.println(bkHistory.size());
-                System.out.println("new position: " + position);                       //ERASE LATER
+
+                /*
+                if (this.position != (this.bkHistory.size() - 1)) {
+                    for(int i = this.position + 1; i<this.bkHistory.size(); i++) {
+                        this.bkHistory.remove(i);
+                    }
+                } else {
+                    this.position = this.position + 1;
+                }
+                */
                 this.bkHistory.add(url);
             }
 
