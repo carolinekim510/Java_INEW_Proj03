@@ -1,4 +1,3 @@
-
 import javax.swing.*;
 import javax.swing.event.HyperlinkEvent;
 import javax.swing.event.HyperlinkListener;
@@ -7,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URL;
 import java.util.ArrayList;
-
 
 public class HtmlHandler extends JFrame implements ActionListener, HyperlinkListener {
 
@@ -95,7 +93,6 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
     public void actionPerformed(ActionEvent e) {
         try {
             URL url = null;
-
             if (e.getActionCommand().equals("Back")) {
                 addHistory = false;
 
@@ -119,18 +116,23 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                     throw new Exception("Next page does not exist.");
                 }
             } else {
-                //this.html.setPage(address.getText());
+
+                System.out.println("old: " + position);
                 url = new URL(address.getText());
-                System.out.println(url);
-                this.position = this.bkHistory.size();
-                //this.bkHistory.size() =
-                System.out.println(bkHistory.size());
-                System.out.println("new position: " + position);                       //ERASE LATER
-                this.bkHistory.add(url);
+                //this.position = this.bkHistory.size() - this.position;
+
+                this.position = this.position +  1;
+                this.bkHistory.add(this.position, url);
+
+                System.out.println("new: " + position);                       //ERASE LATER
+
+
             }
 
             this.html.setPage(new URL(address.getText()));          //bring html for any page
+
             System.out.println("history button: " + bkHistory);     //ERASE later
+
         } catch (Exception i) {
             i.printStackTrace();
         }
