@@ -13,7 +13,7 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
     JEditorPane html;
     String website = null;
     JTextField address;
-    ArrayList<URL> bkHistory = new ArrayList<URL>(); //백 히스토
+    ArrayList<URL> bkHistory = new ArrayList<URL>();
     int position = 0;
     boolean addHistory = true;
 
@@ -35,7 +35,6 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                 html.addHyperlinkListener(this);
                 this.html = html;
 
-                // adding back & forward button & address bar
                 JPanel panel = new JPanel();
                 JButton backBtn = new JButton("Back");
                 JButton forwardBtn = new JButton("Forward");
@@ -58,7 +57,7 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
 
                 this.getContentPane().add(panel, BorderLayout.NORTH);
                 this.getContentPane().add(scroller, BorderLayout.CENTER);
-                this.bkHistory.add(url);    //default starting page is added
+                this.bkHistory.add(url);
                 this.setSize(669, 669);
                 this.setVisible(true);
             }
@@ -71,11 +70,11 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
     @Override
     public void hyperlinkUpdate(HyperlinkEvent e) {
 
-        if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {   // When the link is clicked, this will send the back to the frame
+        if (e.getEventType() == HyperlinkEvent.EventType.ACTIVATED) {
 
             try {
                 if (addHistory = true) {
-                    this.bkHistory.add(e.getURL());     //history only adds when new link is clicked.
+                    this.bkHistory.add(e.getURL());
                 }
 
                 address.setText(e.getURL().toString());
@@ -86,12 +85,11 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                 ex.printStackTrace();
             }
 
-            System.out.println("history: " + bkHistory);        //ERASE later
         }
     }
 
     @Override
-    public void actionPerformed(ActionEvent e) {    //클릭을 했을때의 엑션들이 먼저 이뤄진후, 화면이 보이도록 해야함.
+    public void actionPerformed(ActionEvent e) {
         try {
             URL url = null;
             if (e.getActionCommand().equals("Back")) {
@@ -118,21 +116,16 @@ public class HtmlHandler extends JFrame implements ActionListener, HyperlinkList
                 }
             } else {
 
-                System.out.println("old: " + position);
                 url = new URL(address.getText());
-                //this.position = this.bkHistory.size() - this.position;
 
                 this.position = this.position + 1;
                 this.bkHistory.add(this.position, url);
-
-                System.out.println("new: " + position);                       //ERASE LATER
-
+                this.bkHistory.subList(this.position+1, this.bkHistory.size()).clear();
 
             }
 
-            this.html.setPage(new URL(address.getText()));          //bring html for any page
-
-            System.out.println("history button: " + bkHistory);     //ERASE later
+            this.html.setPage(new URL(address.getText()));
+            //System.out.println("history button: " + bkHistory);       //purpose to check if all URL is entered everything correctly
 
         } catch (Exception i) {
             i.printStackTrace();
